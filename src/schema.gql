@@ -1,0 +1,69 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  id: Int!
+  description: String
+  done: Boolean
+}
+
+"""TODO quick aggregations"""
+type AggregationsType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+  totalTodosCompleted: Int! @deprecated(reason: "USE COMPLETED AND TOTAL INSTEAD")
+}
+
+type Query {
+  """Query placeholder ROOT"""
+  helloWorld: String!
+
+  """Generates a random number from 0 to 100, with 2 decimal digits"""
+  randomNumberFloat: Float!
+
+  """
+  Generates a random Integer number from 0 to Args "to"
+  """
+  randomNumberInt(to: Int): Int!
+
+  """find all TODOS"""
+  findAll(status: Boolean): [Todo!]!
+
+  """find TODO by ID"""
+  findOne(id: Int!): Todo!
+
+  """counts total TODOS"""
+  completedTodos: Int!
+
+  """counts total TODOS"""
+  pendingTodos: Int!
+
+  """counts done true TODOS"""
+  totalTodos: Int!
+
+  """has the 3 aggregations into 1"""
+  aggregations: AggregationsType!
+}
+
+type Mutation {
+  """create a TODO using input"""
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+
+  """update a TODO by ID"""
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+
+  """delete a TODO by ID"""
+  removeTodo(id: Int!): Todo!
+}
+
+input CreateTodoInput {
+  description: String!
+}
+
+input UpdateTodoInput {
+  id: Int!
+  description: String
+  done: Boolean
+}
